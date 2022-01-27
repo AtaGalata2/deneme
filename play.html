@@ -1,0 +1,305 @@
+<html>
+  <head>
+    <title>Play | Build Rooms</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Create a world, visit other worlds and play with friends in Build Rooms.">
+    <meta name="theme-color" content="#62BEFF">
+    <meta name="twitter:card" value="summary">
+    <meta name="twitter:title" content="Play | Build Rooms">
+    <meta name="twitter:description" content="Create a world, visit other worlds and play with friends in Build Rooms.">
+    <meta name="twitter:image" content="https://buildrooms.com/client/img/buildrooms.png">
+    <meta name="twitter:image:alt" content="Build Rooms Logo">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" value="Build Rooms">
+    <meta property="og:title" content="Play | Build Rooms">
+    <meta property="og:url" content="https://buildrooms.com">
+    <meta property="og:description" content="Create a world, visit other worlds and play with friends in Build Rooms.">
+    <meta property="og:image" content="https://buildrooms.com/client/img/buildrooms.png">
+    <meta property="og:image:alt" content="Build Rooms Logo">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1702608795209819",
+          enable_page_level_ads: true
+        });
+      </script>
+	  <link rel="stylesheet" href="client/style/style.css">
+	  <script src="client/js/clouds.js"></script>
+      <style>
+      mark { 
+        background-color: coral;
+        color: white;
+        border:1px solid black;
+        border-radius: 1px;
+        border-spacing: 2px;
+
+      }
+
+      .tools {
+        background-color: #e6d8ad;
+        position:fixed;
+        color: black;
+        right: 5%;
+        width: 15%;
+        text-align: center;
+        height: 640px;
+        padding-left: 1%;
+        padding-right: 1%;
+        border:3px solid teal;
+        border-radius: 1px;
+        border-spacing: 2px;
+        top: 1%;
+      }
+
+      .inventory {
+        background-color: #e6d8ad;
+        position:fixed;
+        color: white;
+        border:3px solid teal;
+        border-radius: 1px;
+        border-spacing: 2px;
+        left: 2%;
+        width: 20%;
+        height: 640px;
+        overflow-y:scroll;
+        padding-left: 20px;
+      }
+
+      canvas {
+        position: absolute;
+        width: 800px;
+        height: 640px;
+        left: 50%;
+       /*  top: 50%; */
+        margin-left: -400px; /* This is half the width */
+        /* margin-top: -320px; /* This is half the height */
+        border:3px solid teal;
+        border-radius: 1px;
+        border-spacing: 2px;
+      }
+
+
+      .inv {
+        position: relative;
+        background-color: #c2b58f;
+        opacity: 70%;
+        border: 1px solid #726a54;
+        transition-duration: 0.2s;
+        /*padding-left: 20px;*/
+      }
+
+      .shop {
+        background-color: #e6d8ad;
+        position:absolute;
+        color: white;
+        border:1px solid black;
+        border-radius: 1px;
+        border-spacing: 2px;
+        opacity: 0.9;
+        width: 800px;
+        height: 640px;
+        left: 50%;
+       /*  top: 50%; */
+        margin-left: -400px; /* This is half the width */
+        /* margin-top: -320px; /* This is half the height */
+        border:3px solid teal;
+        border-radius: 1px;
+        border-spacing: 2px;
+
+      }
+
+      .shopItem {
+        position: relative;
+        width: 150px;
+        height: 100px;
+        margin-bottom: 120px;
+        background-color: #c2b58f;
+        border: 1px solid #726a54;
+        transition-duration: 0.2s;
+        opacity: 0.9;
+      }
+
+
+      .inv:hover {
+      background-color: #726a54; 
+      color: white;
+      border: 1px solid #47412e;
+      opacity: 1;
+      /*padding-left: 20px;*/
+      }
+
+      .text-block{
+        position: absolute;
+        top:-12px;
+        left: 0px;
+        opacity: 0.9;
+        border-radius: 20%;
+        background-color: black; 
+        width: 18px;
+        height: 12px;
+        font-size: 10px;
+        text-align: center;
+        color: white;
+      }
+
+      .text-block2{
+        position: absolute;
+        top:90px;
+        left: -1px;
+        width: 150px;
+        height: 30px;
+        font-size: 14px;
+        text-align: left;
+        color: black;
+      }
+
+      .chatbox{
+        position: absolute;
+        width: 800px;
+        height: 640px;
+        left: 50%;
+       /*  top: 50%; */
+        margin-left: -397px; /* This is half the width */
+        /* margin-top: -317px; /* This is half the height */
+        opacity: 0.7;
+      }
+      
+      .chatboxInput{
+        position: absolute;
+        width: 800px;
+        left: 50%;
+         top: 110px;
+        margin-left: -397px; /* This is half the width */
+       /*  margin-top: -217px; /* This is half the height */
+        opacity: 0.8;
+        background-color:  #daca9d;
+        display: none;
+      }
+            /* Scrollbar styles */
+      ::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+      }
+
+      ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 10px #47412e;
+      border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: #daca9d; 
+      box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+      }
+      </style>
+  </head>
+  <body>
+    <div id="game" style="display:none;">
+    <!--Creates Canvas-->
+      <canvas id="ctx" class='canvas' width="800" height="640"style=
+      "background-color:black;"></canvas>
+
+            <!--Creates chat box div-->
+            <div id="chat-text" class="chatbox" style="width:800px;height:100px;overflow-y:scroll; background-color:#e6d8ad;">
+                    <div>Welcome to BuildRooms! Press 'Enter' to chat.</div>
+                    <div>You can do /help for a list of commands. 
+                         Secret recipe of the Week:
+                         Wood Block + blue block = blue jeans.</div>
+                </div>
+
+                <form id="chat-form">
+                    <input id="chat-input"  class="chatboxInput" autocomplete="off" type="text" placeholder="Type something to talk"></input>
+                </form></br>
+
+                <div class='tools' id='tools'>
+                </br>
+                <h2>Gems</h2>
+                <img src='client/img/gem.png' style='display:inline-block;'><div id="gems" style='display:inline-block;'></div>
+                <!--Creates chat form-->
+                </br>
+                <h2>Visit another room</h2>
+                <form id="world-form" class="gameBtn3">
+                        <input id="world-input" type="text" autocomplete="off" autofocus="true" placeholder="Input room name" style="width:80%; border:3px solid teal; border-radius: 1px;"></input>
+                    </form>
+              
+                  </br>
+                  <h2>Toggles</h2>
+                    <button id="togChat" class="gameBtn" style="display:none" onclick="togChat()">Hide Chat</button>
+                  </br>
+                    <button id="togShop" class="gameBtn1" style="display:none" onclick="togShop()">Show Shop</button>
+                  </br>
+                    <button id="togMusic" class="gameBtn1" style="display:none" onclick="togMusic()">Play Music</button>
+                  </br>
+                  <div id="admin" class="gameBtn" style="display:none">
+                
+                    
+                    </div>
+                  <br>
+                  <h2>Active Room List</h2>
+                    <div id='world-list' class="gameBtn2" style="display:none;background-color: #e6d8ad;color: black; border:1px solid black; border-spacing: 2px;">
+                      
+                    </div>
+                    <br>                      
+                </div>
+
+    </div>
+
+    <div id="inventory" class="inventory" style="display:none">
+    
+    </div>
+
+    <div id="shopDiv" class="shop" style="display:none;">
+
+      Build Rooms Shop.
+  
+    </div>
+	<div class="player"></div>
+	<div class="player-2"></div>
+	<div class="sun" id="the_sun"></div><div class="cloud" id="cloud0"></div>
+		<div class="cloud" id="cloud1"></div>
+		<div class="cloud" id="cloud2"></div>
+		<div class="cloud" id="cloud3"></div>
+		<div class="cloud" id="cloud4"></div>
+		<div class="cloud" id="cloud5"></div>
+		<div class="cloud" id="cloud6"></div>
+		<div class="cloud" id="cloud7"></div>
+		<div class="cloud" id="cloud8"></div>
+		<div class="cloud" id="cloud9"></div>
+		</td></tr></table><script language="javascript">
+
+			simplerGo(false);
+
+			for(var i=0;i<10;i++)
+
+				cloudGo("cloud"+i);
+
+		</script>
+		<div class="title" id="titleDiv">
+			<h1>Build Rooms</h1>
+		</div>
+    <div id="login" style="display:block">
+			<h2 class="signTitles" id="usernameTitle">Username</h2>
+            <input id="user-input" type="text" autocomplete="off"></input>
+			<br>
+			<h2 class="signTitles" id="passwordTitle">Password</h1>
+            <input id="pass-input" type="password" autocomplete="off"></input>
+			<h2 class="signTitles" id="emailTitle" style="display:none;">Email</h1>
+            <input id="email-input" type="email" autocomplete="off" style="display:none;"></input>
+			<br>
+            <button id="actBut" onclick="Action()">REGISTER</button>
+            <button id="logBut" style="display:inline-block" onclick="Auth('login')">Login</button>
+            <button id="regBut" style="display:none" onclick="Auth('register')">Register</button>
+    </div>
+      <br>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script src="client/imgs.js"></script>
+    <script src="client/sound.js"></script>
+    <script src="client/main.js?n=1"></script>
+    <script src="client/inventory.js"></script>
+  </body>
+</html>
